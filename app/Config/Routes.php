@@ -1,0 +1,18 @@
+<?php
+
+use CodeIgniter\Router\RouteCollection;
+
+/**
+ * @var RouteCollection $routes
+ */
+$routes->get('/', 'Home::index');
+
+$routes->get('/dashboard', 'DashboardController::index');
+$routes->get('list/books', 'BookController::index');
+$routes->get('list/users', 'UserController::index');
+
+$routes->get('/create/book', 'BookController::create');
+$routes->post('/create/book', 'BookController::store');
+
+$routes->get('/edit/book/(:num)', 'BookController::edit/$1');
+$routes->post('/update/book/(:num)', 'BookController::update/$1');
