@@ -3,7 +3,7 @@
 <?= $this->section('header') ?>
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1>Daftar Buku</h1>
+        <h1><?php echo $title; ?></h1>
     </div>
 </div>
 <?= $this->endSection() ?>
@@ -13,6 +13,18 @@
     <div class="card-header">
         <h3 class="card-title">Data Buku</h3>
 
+        <?php if(session()->getFlashdata('success')): ?>
+            <div class="alert alert-success">
+                <?= session()->getFlashdata('success') ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if(session()->getFlashdata('error')): ?>
+            <div class="alert alert-danger">
+                <?= session()->getFlashdata('error') ?>
+            </div>
+        <?php endif; ?>
+        
         <div class="card-tools">
             <a href="<?= base_url('create/book') ?>" class="btn btn-primary btn-sm">
                 <i class="fas fa-plus"></i> Tambah Buku
@@ -26,50 +38,36 @@
                 <tr>
                     <th width="50">No.</th>
                     <th>Judul Buku</th>
+                    <th>Kode Buku</th>
+                    <th>ISBN</th>
                     <th>Penulis</th>
                     <th>Penerbit</th>
-                    <th>Tahun</th>
-                    <th>Stok</th>
+                    <th>Tahun Terbit</th>
+                    <th>Keterangan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Buku 1</td>
-                    <td>Penulis 1</td>
-                    <td>Penerbit 1</td>
-                    <td>2020</td>
-                    <td>10</td>
-                    <td>
-                        <a href="<?= base_url('edit/book/1') ?>" class="btn btn-info btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Buku 2</td>
-                    <td>Penulis 2</td>
-                    <td>Penerbit 2</td>
-                    <td>2021</td>
-                    <td>15</td>
-                    <td>
-                        <a href="<?= base_url('edit/book/2') ?>" class="btn btn-info btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Buku 3</td>
-                    <td>Penulis 3</td>
-                    <td>Penerbit 3</td>
-                    <td>2022</td>
-                    <td>20</td>
-                    <td>
-                        <a href="<?= base_url('edit/book/3') ?>" class="btn btn-info btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                    </td>
-                </tr>
+                <?php $no=0; ?>
+                <?php foreach($books as $book): ?>
+                    <?php $no++; ?>
+                    <tr>
+                        <td><?php echo $no ?></td>
+                        <td><?php echo $book['title_book'] ?></td>
+                        <td><?php echo $book['code_book'] ?></td>
+                        <td><?php echo $book['isbn_book'] ?></td>
+                        <td><?php echo $book['author_book'] ?></td>
+                        <td><?php echo $book['publisher_book'] ?></td>
+                        <td><?php echo $book['published_year'] ?></td>
+                        <td><?php echo $book['description_book'] ?></td>
+                        <td>
+                            <a href="<?= base_url('edit/book/' . $book['id_book']) ?>" class="btn btn-info btn-sm">Edit</a>
+                            <form action="<?= base_url('delete/book/' . $book['id_book']) ?>" method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?')">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
