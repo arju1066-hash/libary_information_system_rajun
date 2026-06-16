@@ -10,4 +10,4 @@
 
 <?= $this->section('content') ?>
 
-<?= $this->endsection() ?>
+<?= $this->endSection() ?>
