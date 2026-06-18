@@ -25,3 +25,17 @@ $routes->post('/create/member', 'MemberController::store');
 $routes->get('/edit/member/(:num)', 'MemberController::edit/$1');
 $routes->post('/update/member', 'MemberController::update');
 $routes->post('/delete/member/(:num)', 'MemberController::delete/$1');
+
+$routes->get('/laporan/buku', 'LaporanController::buku');
+$routes->get('/laporan/cetak-buku', 'LaporanController::cetakBuku');
+
+$routes->get('/laporan/label-buku', 'LaporanController::labelBuku');
+$routes->get('/laporan/cetak-label-buku', 'LaporanController::cetakLabelBuku');
+$routes->get('/laporan/cetak-label-buku/(:num)', 'LaporanController::cetakLabelSatu/$1');
+
+$routes->get('/laporan/member', 'LaporanController::member');
+$routes->get('/laporan/cetak-member', 'LaporanController::cetakMember');
+
+$routes->get('/laporan/label-member', 'LaporanController::labelMember');
+$routes->get('/laporan/cetak-label-member', 'LaporanController::cetakLabelMember');
+$routes->get('/laporan/cetak-label-member/(:num)', 'LaporanController::cetakLabelSatuMember/$1');

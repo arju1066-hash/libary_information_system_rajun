@@ -20,7 +20,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="<?= base_url('create/book') ?>" method="post">
+    <form action="<?= base_url('create/book') ?>" method="post" id="bookForm">
         <!-- Form fields will go here -->
          <?= csrf_field() ?>
          <div class="card-body">

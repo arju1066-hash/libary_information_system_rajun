@@ -87,8 +87,9 @@ function requestAjax(urlParams, methodParams='GET', dataType='html', dataParams=
             }
         },
         error: function(xhr, status, error) {
-            console.error("AJAX Error: " + status + " : " + error);
-            alert("Terjadi kesalahan saat memuat data.");
+            console.log(xhr);
+            console.log(xhr.responseText);
+            alert(xhr.responseText);
         }
     });
 }
